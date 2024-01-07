@@ -14,6 +14,8 @@ struct SearchView: View {
             Text("Searching for \(searchText)")
                 .navigationTitle("Search a Github User")
         }
+        .frame(height: 180)
+        .offset(y: -280)
         .searchable(text: $searchText, prompt: "github_user")
         .onSubmit(of: .search, fetchUser)
     }

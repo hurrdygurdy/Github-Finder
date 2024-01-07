@@ -16,9 +16,17 @@ struct UserView: View {
     
     var body: some View {
         VStack {
+            AsyncImage(url: URL(string: user.avatarUrl), scale: 1.5)
+                .clipShape(Circle())
             Text(user.name ?? "")
+                .font(.title)
             Text(user.description)
-            Text("username: \(user.username)")
-        }
+        }.offset(y: 20)
+        
+        VStack {
+            UserDetailsView(detail: "Username: ", value: user.username)
+            UserDetailsView(detail: "Followers:", value: String(user.followersCount))
+            UserDetailsView(detail: "Following:", value: String(user.followingCount))
+        }.offset(y: 30)
     }
 }
