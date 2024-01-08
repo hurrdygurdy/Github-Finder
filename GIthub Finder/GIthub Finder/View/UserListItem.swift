@@ -11,6 +11,7 @@ struct UserListItem: View {
     let user: LinkedUser
     @State private var githubUser: GithubUser?
     @State private var showUserView: Bool = false
+    @State private var error: APIError = .emptyResponseData
     
     var body: some View {
         NavigationStack {
@@ -20,7 +21,7 @@ struct UserListItem: View {
             }
             .navigationDestination(isPresented: $showUserView) {
                 if githubUser == nil {
-                    EmptyView()
+                    NotFoundView(error: error)
                 } else {
                     UserView(user: githubUser!)
                 }
@@ -46,7 +47,9 @@ extension UserListItem: RequestParser {
         }
     }
     
-    func fetchFailedWith(error: Error) {
+    func fetchFailedWith(error: APIError) {
         print(error)
+        self.showUserView = true
+        self.error = error
     }
 }

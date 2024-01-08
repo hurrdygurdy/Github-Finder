@@ -11,20 +11,23 @@ struct SearchView: View {
     @State private var searchText = ""
     @State private var user: GithubUser?
     @State private var showUserView: Bool = false
+    @State private var error: APIError = .emptyResponseData
     
     var body: some View {
         NavigationStack {
-            Text("Searching for \(searchText)")
-                .navigationTitle("Search a Github User")
-                .navigationDestination(isPresented: $showUserView) {
-                    if user == nil {
-                        EmptyView()
-                    } else {
-                        UserView(user: user!)
-                    }
+            VStack{
+                Image("user-search").resizable().frame(width: 150.0, height: 150.0)
+            }
+            .navigationTitle("Search a Github User")
+            .navigationDestination(isPresented: $showUserView) {
+                if user == nil {
+                    NotFoundView(error: error)
+                } else {
+                    UserView(user: user!)
                 }
+            }
         }
-        .searchable(text: $searchText, prompt: "github_user")
+        .searchable(text: $searchText, prompt: "Enter username")
         .onSubmit(of: .search, searchUser)
     }
     
@@ -49,7 +52,9 @@ extension SearchView: RequestParser {
         }
     }
     
-    func fetchFailedWith(error: Error) {
+    func fetchFailedWith(error: APIError) {
         print(error)
+        self.showUserView = true
+        self.error = error
     }
 }

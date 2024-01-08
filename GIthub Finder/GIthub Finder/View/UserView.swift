@@ -11,6 +11,7 @@ struct UserView: View {
     var user: GithubUser
     @State private var showLinkedUser: Bool = false
     @State private var linkedUsers: [LinkedUser] = []
+    @State private var error: APIError = .emptyResponseData
     
     init(user: GithubUser) {
         self.user = user
@@ -36,7 +37,11 @@ struct UserView: View {
                 }
             }.offset(y: 30)
         }.navigationDestination(isPresented: $showLinkedUser) {
-            UserListView(list: linkedUsers)
+            if linkedUsers.isEmpty {
+                NotFoundView(error: error)
+            } else {
+                UserListView(list: linkedUsers)
+            }
         }
     }
 }
@@ -56,7 +61,9 @@ extension UserView: RequestParser {
         }
     }
     
-    func fetchFailedWith(error: Error) {
+    func fetchFailedWith(error: APIError) {
         print(error)
+        self.showLinkedUser = true
+        self.error = error
     }
 }

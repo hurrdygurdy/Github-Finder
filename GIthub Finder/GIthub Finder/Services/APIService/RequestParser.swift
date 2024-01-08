@@ -13,7 +13,7 @@ protocol RequestParser {
     /// Fetching completed successfully. `result` is of type `decodable`
     func fetchDidCompleteWith(result: Decodable)
     /// Fetching failed.
-    func fetchFailedWith(error: Error)
+    func fetchFailedWith(error: APIError)
 }
 
 extension RequestParser {
@@ -24,23 +24,10 @@ extension RequestParser {
                 let result = try Global.jsonDecoder.decode(decodable, from: data)
                 fetchDidCompleteWith(result: result)
             } catch {
-                print(error)
+                fetchFailedWith(error: APIError.any(error))
             }
         case .failure(let error):
-            errorHandler(error)
-        }
-    }
-
-    func errorHandler(_ error: APIError) {
-        switch error {
-        case .requestCreationFailed:
-            print("requestCreationFailed")
-        case .requestFailed(let error):
-            print("requestFailed:", error.localizedDescription)
-        case .invalidResponseCode(let responseCode):
-            print("invalidResponseCode:", responseCode)
-        case .emptyResponseData:
-            print("emptyResponseData")
+            fetchFailedWith(error: error)
         }
     }
 }
