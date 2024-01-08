@@ -16,8 +16,12 @@ struct UserListItem: View {
     var body: some View {
         NavigationStack {
             HStack {
-                AsyncImage(url: URL(string: user.avatarUrl), scale: 4.0).clipShape(Circle())
-                Text(user.username)
+                AsyncImage(url: URL(string: user.avatarUrl), content: { image in
+                    image.setImage(maxWidth: 50.0, maxHeight: 50.0)
+                }, placeholder: {
+                    Image("user").setImage(maxWidth: 50.0, maxHeight: 50.0)
+                }).clipShape(Circle())
+                Text(user.username).padding(20.0).bold()
             }
             .navigationDestination(isPresented: $showUserView) {
                 if githubUser == nil {

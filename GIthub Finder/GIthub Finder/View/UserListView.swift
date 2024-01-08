@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct UserListView: View {
-    let list: [LinkedUser]
+    var list: [LinkedUser]
     
     var body: some View {
-        List(list, id: \.username) { user in
+        List(list.sorted { lhs, rhs in lhs.username.lowercased() < rhs.username.lowercased() }, id: \.username) { user in
             UserListItem(user: user)
         }
     }

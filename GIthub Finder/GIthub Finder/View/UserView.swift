@@ -20,22 +20,33 @@ struct UserView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                AsyncImage(url: URL(string: user.avatarUrl), scale: 1.5)
-                    .clipShape(Circle())
+                AsyncImage(url: URL(string: user.avatarUrl), content: { image in
+                    image.setImage(maxWidth: 300.0, maxHeight: 300.0)
+                }, placeholder: {
+                    Image("user").setImage(maxWidth: 300.0, maxHeight: 300.0)
+                }).clipShape(Circle())
                 Text(user.name ?? "")
                     .font(.title)
-                Text(user.description ?? "")
-            }.offset(y: 20)
+                Text(user.description ?? "").padding(15.0)
+            }.offset(y: -35)
             
             VStack {
                 UserDetailsView(detail: "Username: ", value: user.username)
                 UserDetailsView(detail: "Followers:", value: String(user.followersCount)).onTapGesture {
-                    Endpoint.followers(ofUser: user.username).request(completion: completionHandler)
+                    if user.followersCount == 0 {
+                        print("No followers")
+                    } else {
+                        Endpoint.followers(ofUser: user.username).request(completion: completionHandler)
+                    }
                 }
                 UserDetailsView(detail: "Following:", value: String(user.followingCount)).onTapGesture {
-                    Endpoint.usersFollowed(byUser: user.username).request(completion: completionHandler)
+                    if user.followingCount == 0 {
+                        print("No Following")
+                    } else {
+                        Endpoint.usersFollowed(byUser: user.username).request(completion: completionHandler)
+                    }
                 }
-            }.offset(y: 30)
+            }.offset(y: -20)
         }.navigationDestination(isPresented: $showLinkedUser) {
             if linkedUsers.isEmpty {
                 NotFoundView(error: error)
