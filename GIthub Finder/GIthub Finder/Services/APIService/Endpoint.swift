@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Paste your github personal access token here.
 private let token = ""
 
 enum Endpoint {
