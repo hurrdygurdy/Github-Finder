@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+/// Sub details of an user
 struct UserDetailsView: View {
     
     let detail: String

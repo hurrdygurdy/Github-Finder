@@ -7,12 +7,14 @@
 
 import Foundation
 
-private let token = ""
+private let token = "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"
 
 enum Endpoint {
     case listUsers
     case getUser(String)
     case avatar(link: String)
+    case followers(ofUser: String)
+    case usersFollowed(byUser: String)
     
     var url: URL? {
         switch self {
@@ -22,6 +24,10 @@ enum Endpoint {
             return URL(string: "https://api.github.com/users/\(username)")
         case .avatar(let link):
             return URL(string: link)
+        case .followers(let user):
+            return URL(string: "https://api.github.com/users/\(user)/followers")
+        case .usersFollowed(let user):
+            return URL(string: "https://api.github.com/users/\(user)/following")
         }
     }
     
@@ -32,11 +38,12 @@ enum Endpoint {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         switch self {
-        case .listUsers, .getUser:
+        case .avatar:
+            break
+        default:
             request.setValue("application/vnd.github+json", forHTTPHeaderField: "Accept")
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             request.addValue("2022-11-28", forHTTPHeaderField: "X-GitHub-Api-Version")
-        default: break
         }
         return request
     }

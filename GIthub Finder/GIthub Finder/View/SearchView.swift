@@ -19,19 +19,22 @@ struct SearchView: View {
         .searchable(text: $searchText, prompt: "github_user")
         .onSubmit(of: .search, fetchUser)
     }
-    
-    func fetchUser() {
+}
+
+// MARK: Network request handling
+extension SearchView {
+    private func fetchUser() {
         print("searching ", searchText)
         Endpoint.getUser(searchText.lowercased()).request(completion: completionHandler)
     }
 
-    func completionHandler(_ apiResponse: APIResponse) {
+    private func completionHandler(_ apiResponse: APIResponse) {
         switch apiResponse {
         case .success(let data):
             do {
                 let json = try JSONSerialization.jsonObject(with: data)
                 print(json)
-                let user = try JSONDecoder().decode(GithubUser.self, from: data)
+                let user = try Global.jsonDecoder.decode(GithubUser.self, from: data)
                 print(user.username)
             } catch {
                 print(error)
@@ -41,7 +44,7 @@ struct SearchView: View {
         }
     }
 
-    func errorHandler(_ error: APIError) {
+    private func errorHandler(_ error: APIError) {
         switch error {
         case .requestCreationFailed:
             print("requestCreationFailed")

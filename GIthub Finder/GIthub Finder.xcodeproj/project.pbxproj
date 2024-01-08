@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		EBD0C4982B4AF6C3000617E0 /* UserDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD0C4972B4AF6C3000617E0 /* UserDetailsView.swift */; };
+		EBD0C49A2B4AFC03000617E0 /* LinkedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD0C4992B4AFC03000617E0 /* LinkedUser.swift */; };
+		EBD0C49C2B4AFE6E000617E0 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD0C49B2B4AFE6E000617E0 /* Global.swift */; };
+		EBD0C49E2B4AFF4C000617E0 /* UserListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD0C49D2B4AFF4C000617E0 /* UserListView.swift */; };
+		EBD0C4A02B4AFFAC000617E0 /* UserListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD0C49F2B4AFFAC000617E0 /* UserListItem.swift */; };
 		EBFFC01E2B45C08200E8BEA2 /* GIthub_FinderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFFC01D2B45C08200E8BEA2 /* GIthub_FinderApp.swift */; };
 		EBFFC0202B45C08200E8BEA2 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFFC01F2B45C08200E8BEA2 /* SearchView.swift */; };
 		EBFFC0222B45C08600E8BEA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBFFC0212B45C08600E8BEA2 /* Assets.xcassets */; };
@@ -21,6 +25,10 @@
 
 /* Begin PBXFileReference section */
 		EBD0C4972B4AF6C3000617E0 /* UserDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsView.swift; sourceTree = "<group>"; };
+		EBD0C4992B4AFC03000617E0 /* LinkedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedUser.swift; sourceTree = "<group>"; };
+		EBD0C49B2B4AFE6E000617E0 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		EBD0C49D2B4AFF4C000617E0 /* UserListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListView.swift; sourceTree = "<group>"; };
+		EBD0C49F2B4AFFAC000617E0 /* UserListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListItem.swift; sourceTree = "<group>"; };
 		EBFFC01A2B45C08200E8BEA2 /* GIthub Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GIthub Finder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBFFC01D2B45C08200E8BEA2 /* GIthub_FinderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIthub_FinderApp.swift; sourceTree = "<group>"; };
 		EBFFC01F2B45C08200E8BEA2 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -63,10 +71,10 @@
 		EBFFC01C2B45C08200E8BEA2 /* GIthub Finder */ = {
 			isa = PBXGroup;
 			children = (
-				EBFFC02E2B45C4AA00E8BEA2 /* Services */,
+				EBFFC01D2B45C08200E8BEA2 /* GIthub_FinderApp.swift */,
 				EBFFC02B2B45C10D00E8BEA2 /* Model */,
 				EBFFC0382B45EF4B00E8BEA2 /* View */,
-				EBFFC01D2B45C08200E8BEA2 /* GIthub_FinderApp.swift */,
+				EBFFC02E2B45C4AA00E8BEA2 /* Services */,
 				EBFFC0212B45C08600E8BEA2 /* Assets.xcassets */,
 				EBFFC0232B45C08600E8BEA2 /* Preview Content */,
 			);
@@ -84,8 +92,9 @@
 		EBFFC02B2B45C10D00E8BEA2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EBFFC02C2B45C12000E8BEA2 /* GIthubUser.swift */,
 				EBFFC0362B45C9BA00E8BEA2 /* APIError.swift */,
+				EBFFC02C2B45C12000E8BEA2 /* GIthubUser.swift */,
+				EBD0C4992B4AFC03000617E0 /* LinkedUser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -93,6 +102,7 @@
 		EBFFC02E2B45C4AA00E8BEA2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				EBD0C49B2B4AFE6E000617E0 /* Global.swift */,
 				EBFFC02F2B45C4B800E8BEA2 /* APIService */,
 			);
 			path = Services;
@@ -113,6 +123,8 @@
 				EBFFC01F2B45C08200E8BEA2 /* SearchView.swift */,
 				EBFFC0392B45EF9D00E8BEA2 /* UserView.swift */,
 				EBD0C4972B4AF6C3000617E0 /* UserDetailsView.swift */,
+				EBD0C49D2B4AFF4C000617E0 /* UserListView.swift */,
+				EBD0C49F2B4AFFAC000617E0 /* UserListItem.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -189,12 +201,16 @@
 			files = (
 				EBD0C4982B4AF6C3000617E0 /* UserDetailsView.swift in Sources */,
 				EBFFC0202B45C08200E8BEA2 /* SearchView.swift in Sources */,
+				EBD0C49A2B4AFC03000617E0 /* LinkedUser.swift in Sources */,
 				EBFFC01E2B45C08200E8BEA2 /* GIthub_FinderApp.swift in Sources */,
 				EBFFC02D2B45C12000E8BEA2 /* GIthubUser.swift in Sources */,
 				EBFFC0312B45C4D700E8BEA2 /* APIRequests.swift in Sources */,
 				EBFFC0332B45C4F900E8BEA2 /* Endpoint.swift in Sources */,
+				EBD0C49E2B4AFF4C000617E0 /* UserListView.swift in Sources */,
 				EBFFC0372B45C9BA00E8BEA2 /* APIError.swift in Sources */,
+				EBD0C49C2B4AFE6E000617E0 /* Global.swift in Sources */,
 				EBFFC03A2B45EF9D00E8BEA2 /* UserView.swift in Sources */,
+				EBD0C4A02B4AFFAC000617E0 /* UserListItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
