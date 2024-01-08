@@ -9,13 +9,10 @@ import Foundation
 /// Details of a user followed/following by another user.
 struct LinkedUser: Decodable {
     let username: String
-    /// Display name
-    let name: String?
     let avatarUrl: String
     
     enum CodingKeys: String, CodingKey {
         case username = "login"
-        case name
         case avatarUrl = "avatar_url"
     }
 }

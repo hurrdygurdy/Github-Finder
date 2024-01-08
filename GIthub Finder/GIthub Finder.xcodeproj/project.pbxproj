@@ -12,6 +12,7 @@
 		EBD0C49C2B4AFE6E000617E0 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD0C49B2B4AFE6E000617E0 /* Global.swift */; };
 		EBD0C49E2B4AFF4C000617E0 /* UserListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD0C49D2B4AFF4C000617E0 /* UserListView.swift */; };
 		EBD0C4A02B4AFFAC000617E0 /* UserListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD0C49F2B4AFFAC000617E0 /* UserListItem.swift */; };
+		EBD0C4A22B4C356A000617E0 /* UserRequestParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD0C4A12B4C356A000617E0 /* UserRequestParser.swift */; };
 		EBFFC01E2B45C08200E8BEA2 /* GIthub_FinderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFFC01D2B45C08200E8BEA2 /* GIthub_FinderApp.swift */; };
 		EBFFC0202B45C08200E8BEA2 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFFC01F2B45C08200E8BEA2 /* SearchView.swift */; };
 		EBFFC0222B45C08600E8BEA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBFFC0212B45C08600E8BEA2 /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 		EBD0C49B2B4AFE6E000617E0 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		EBD0C49D2B4AFF4C000617E0 /* UserListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListView.swift; sourceTree = "<group>"; };
 		EBD0C49F2B4AFFAC000617E0 /* UserListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListItem.swift; sourceTree = "<group>"; };
+		EBD0C4A12B4C356A000617E0 /* UserRequestParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequestParser.swift; sourceTree = "<group>"; };
 		EBFFC01A2B45C08200E8BEA2 /* GIthub Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GIthub Finder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBFFC01D2B45C08200E8BEA2 /* GIthub_FinderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIthub_FinderApp.swift; sourceTree = "<group>"; };
 		EBFFC01F2B45C08200E8BEA2 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				EBD0C49B2B4AFE6E000617E0 /* Global.swift */,
+				EBD0C4A12B4C356A000617E0 /* UserRequestParser.swift */,
 				EBFFC02F2B45C4B800E8BEA2 /* APIService */,
 			);
 			path = Services;
@@ -206,6 +209,7 @@
 				EBFFC02D2B45C12000E8BEA2 /* GIthubUser.swift in Sources */,
 				EBFFC0312B45C4D700E8BEA2 /* APIRequests.swift in Sources */,
 				EBFFC0332B45C4F900E8BEA2 /* Endpoint.swift in Sources */,
+				EBD0C4A22B4C356A000617E0 /* UserRequestParser.swift in Sources */,
 				EBD0C49E2B4AFF4C000617E0 /* UserListView.swift in Sources */,
 				EBFFC0372B45C9BA00E8BEA2 /* APIError.swift in Sources */,
 				EBD0C49C2B4AFE6E000617E0 /* Global.swift in Sources */,

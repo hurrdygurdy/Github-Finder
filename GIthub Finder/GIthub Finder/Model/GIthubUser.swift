@@ -13,7 +13,7 @@ struct GithubUser: Decodable {
     let name: String?
     let avatarUrl: String
     /// Bio
-    let description: String
+    let description: String?
     let followersCount: Int
     let followingCount: Int
     

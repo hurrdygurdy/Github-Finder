@@ -11,12 +11,8 @@ struct UserListView: View {
     let list: [LinkedUser]
     
     var body: some View {
-        NavigationSplitView {
-            List(list, id: \.username) { user in
-                UserListItem(user: user)
-            }
-        } detail: {
-            Text("Select a user")
+        List(list, id: \.username) { user in
+            UserListItem(user: user)
         }
     }
 }

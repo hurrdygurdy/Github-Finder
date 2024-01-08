@@ -9,57 +9,47 @@ import SwiftUI
 
 struct SearchView: View {
     @State private var searchText = ""
+    @State private var user: GithubUser?
+    @State private var showUserView: Bool = false
+    
     var body: some View {
         NavigationStack {
             Text("Searching for \(searchText)")
                 .navigationTitle("Search a Github User")
+                .navigationDestination(isPresented: $showUserView) {
+                    if user == nil {
+                        EmptyView()
+                    } else {
+                        UserView(user: user!)
+                    }
+                }
         }
-        .frame(height: 180)
-        .offset(y: -280)
         .searchable(text: $searchText, prompt: "github_user")
-        .onSubmit(of: .search, fetchUser)
+        .onSubmit(of: .search, searchUser)
+    }
+    
+    func searchUser() {
+        Endpoint.getUser(searchText).request(completion: completionHandler)
     }
 }
 
 // MARK: Network request handling
-extension SearchView {
-    private func fetchUser() {
-        print("searching ", searchText)
-        Endpoint.getUser(searchText.lowercased()).request(completion: completionHandler)
+extension SearchView: RequestParser {
+    var decodable: Decodable.Type {
+        return GithubUser.self
     }
-
-    private func completionHandler(_ apiResponse: APIResponse) {
-        switch apiResponse {
-        case .success(let data):
-            do {
-                let json = try JSONSerialization.jsonObject(with: data)
-                print(json)
-                let user = try Global.jsonDecoder.decode(GithubUser.self, from: data)
-                print(user.username)
-            } catch {
-                print(error)
+    
+    func fetchDidCompleteWith(result: Decodable) {
+        DispatchQueue.main.async {
+            guard let githubUser = result as? GithubUser else {
+                return
             }
-        case .failure(let error):
-            errorHandler(error)
+            self.user = githubUser
+            self.showUserView = true
         }
     }
-
-    private func errorHandler(_ error: APIError) {
-        switch error {
-        case .requestCreationFailed:
-            print("requestCreationFailed")
-        case .requestFailed(let error):
-            print("requestFailed:", error.localizedDescription)
-        case .invalidResponseCode(let responseCode):
-            print("invalidResponseCode:", responseCode)
-        case .emptyResponseData:
-            print("emptyResponseData")
-        }
-    }
-}
-
-struct SearchView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchView()
+    
+    func fetchFailedWith(error: Error) {
+        print(error)
     }
 }
