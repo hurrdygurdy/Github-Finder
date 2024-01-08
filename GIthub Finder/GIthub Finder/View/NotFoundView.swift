@@ -11,7 +11,7 @@ struct NotFoundView: View {
     let error: APIError
     var body: some View {
         VStack {
-            Image("not-found").resizable().frame(width: 150.0, height: 150.0)
+            Image("not-found").setImage(maxWidth: 200.0, maxHeight: 200.0)
             Text(error.info).bold()
         }
     }

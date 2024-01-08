@@ -7,7 +7,7 @@
 
 import Foundation
 
-private let token = "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"
+private let token = ""
 
 enum Endpoint {
     case listUsers
